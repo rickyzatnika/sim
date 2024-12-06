@@ -7,7 +7,7 @@ const Profile = () => {
             <div className='w-full flex-1 bg-white  rounded shadow-lg'>
                 <p className='border-b mb-2 md:mb-8 py-4 px-4 text-xl font-semibold text-blue-900/80'>Murid Baik</p>
                 <div className='w-full flex items-center justify-center md:mx-auto p-4 lg:p-12'>
-                    <Image src="/siswi.png" width={270} height={270} objectFit='contain' priority={true} />
+                    <Image alt='siswi-icb' src="/siswi.png" width={270} height={270} objectFit='contain' priority={true} />
                 </div>
             </div>
 

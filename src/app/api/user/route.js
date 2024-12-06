@@ -3,13 +3,13 @@ import Users from "@/models/Users";
 import connect from "@/utils/connect";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req = NextRequest){
+export const GET = async (req = NextRequest) => {
   
 
   await connect();
   try {
     // Mengambil semua pengguna dan menghubungkan data profilnya
-    const users = await Users.find();
+    const users = await Users.find({});
 
     if (!users || users.length === 0) {
       return new NextResponse(

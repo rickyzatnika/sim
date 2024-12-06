@@ -20,7 +20,7 @@ const TugasSiswa = () => {
                 {/* CARD */}
                 <div className='w-full  rounded-lg shadow-md pb-4'>
                     <div className='bg-purple-400 w-full flex gap-1 items-start p-2'>
-                        <Image src="/message.png" width={70} height={70} priority={true} />
+                        <Image alt='icon-message' src="/message.png" width={70} height={70} priority={true} />
                         <div className='flex flex-col items-start'>
                             <p className='text-lg text-gray-50 font-bold'>MTK</p>
                             <p className='text-sm text-gray-50'>Guru : Basuki Purnomo</p>
@@ -52,7 +52,7 @@ const TugasSiswa = () => {
                 {/* CARD */}
                 <div className='w-full rounded-lg shadow-md pb-4'>
                     <div className='bg-cyan-400 w-full flex gap-1 items-start p-2'>
-                        <Image src="/message.png" width={70} height={70} priority={true} />
+                        <Image alt='icon-message' src="/message.png" width={70} height={70} priority={true} />
                         <div className='flex flex-col items-start'>
                             <p className='text-lg text-gray-50 font-bold'>IPA</p>
                             <p className='text-sm text-gray-50'>Guru : Bu Marni</p>

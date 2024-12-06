@@ -10,16 +10,20 @@ export async function GET(req = NextRequest , { params: { id } }) {
 
     return new NextResponse(JSON.stringify(user), { status: 200 });
   } catch (error) {
-    return new NextResponse(JSON.stringify({message: error.message}), { status: 500 });
+    return new NextResponse(
+      JSON.stringify({ message: "Internal server error" }),
+      { status: 500 }
+    );
   }
 }
 
 
 export async function PUT(req = NextRequest, { params: { id } }) {
   await connect();
-  const body = await req.json();
+  
 
   try {
+    const body = await req.json();
     // Cek apakah nama sudah ada pada database
     const existingUser = await Users.findOne({
       name: bodyname,

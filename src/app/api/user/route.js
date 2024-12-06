@@ -22,10 +22,7 @@ export async function GET(req = NextRequest){
     return new NextResponse(JSON.stringify(users), { status: 200 });
   } catch (error) {
     console.error(error);
-    return new NextResponse(
-      JSON.stringify({ message: "Internal server error" }),
-      { status: 500 }
-    );
+    return new NextResponse(JSON.stringify(error.message), { status: 500 });
   }
 };
 

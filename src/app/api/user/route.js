@@ -1,4 +1,3 @@
-
 import Users from "@/models/Users";
 import connect from "@/utils/connect";
 import { NextRequest, NextResponse } from "next/server";

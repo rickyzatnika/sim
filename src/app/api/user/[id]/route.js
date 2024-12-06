@@ -22,7 +22,7 @@ export async function PUT(req = NextRequest, { params: { id } }) {
   try {
     // Cek apakah nama sudah ada pada database
     const existingUser = await Users.findOne({
-      name: body.name,
+      name: bodyname,
       _id: { $ne: id },
     });
 

@@ -28,7 +28,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 
-export const GET = async (req = NextRequest) => {
+export async function GET (req = NextRequest) {
   await connect();
 
   try {

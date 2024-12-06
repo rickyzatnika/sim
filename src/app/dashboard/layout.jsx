@@ -24,7 +24,7 @@ export default function DashboardLayout({ children }) {
 
   // Pastikan URL hanya dipanggil jika session siap
   const { data: users } = useSWR(
-    session?.user?._id ? `${process.env.NEXT_PUBLIC_API_PRO}/api/user/${session.user._id}` : null,
+    session?.user?._id ? `${process.env.NEXT_PUBLIC_API_PRO}/api/student/${session.user._id}` : null,
     fetcher
   );
 

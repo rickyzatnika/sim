@@ -51,7 +51,7 @@ const Dashboard = () => {
 
       const body = { name, kodePeserta, mataUjian, gender };
 
-      const res = await fetch(session?.user?._id ? `${process.env.NEXT_PUBLIC_API_PRO}/api/user/${session.user._id}` : null, {
+      const res = await fetch(session?.user?._id ? `${process.env.NEXT_PUBLIC_API_PRO}/api/student/${session.user._id}` : null, {
         headers: {
           "Content-Type": "application/json",
         },

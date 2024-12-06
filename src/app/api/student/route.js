@@ -3,10 +3,7 @@ import connect from "@/utils/connect";
 import { NextResponse } from "next/server";
 
 
-
-
-
-export async function GET (req) {
+export const GET = async (req) => {
   await connect();
 
   try {

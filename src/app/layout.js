@@ -1,6 +1,8 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
-
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import AuthProvider from "@/component/AuthProvider";
 
 
 export const metadata = {
@@ -20,7 +22,12 @@ const poppins = Poppins({
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={poppins.className}>{children}</body>
+      <body className={poppins.className}>
+        <ToastContainer theme="dark" />
+        <AuthProvider>
+          {children}
+        </AuthProvider>
+      </body>
     </html>
   );
 }

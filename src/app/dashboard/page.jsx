@@ -1,13 +1,79 @@
+"use client"
+
 import { FaBell } from "react-icons/fa";
 import { IoMailSharp } from "react-icons/io5";
-
 import { MdOutlineDateRange } from "react-icons/md";
 import { FaGraduationCap } from "react-icons/fa6";
+import { useSession } from "next-auth/react";
+import useSWR from "swr";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 
-import React from 'react'
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const Dashboard = () => {
+
+  const { data: session } = useSession();
+
+  const { data: users } = useSWR(
+    session?.user?._id ? `${process.env.NEXT_PUBLIC_API_PRO}/api/user/${session.user._id}` : null,
+    fetcher
+  );
+
+  const [loading, setLoading] = useState(false);
+
+  const [name, setName] = useState("");
+  const [kodePeserta, setKodePeserta] = useState("");
+  const [mataUjian, setMataUjian] = useState("");
+  const [gender, setGender] = useState("");
+
+  useEffect(() => {
+    if (users) {
+      setName(users.name || "");
+      setKodePeserta(users.kodePeserta || "");
+      setMataUjian(users.mataUjian || "");
+      setGender(users.gender || "");
+    }
+  }, [users]);
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!session?.user?._id) {
+      toast.error("User tidak valid!");
+      return;
+    }
+
+    setLoading(true);
+    try {
+
+      const body = { name, kodePeserta, mataUjian, gender };
+
+      const res = await fetch(session?.user?._id ? `${process.env.NEXT_PUBLIC_API_PRO}/api/user/${session.user._id}` : null, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "PUT",
+        body: JSON.stringify(body),
+      });
+
+      const resJson = await res.json();
+
+      if (res.status === 200) {
+        toast.success(`Peserta dengan kode ${resJson.kodePeserta} Valid!`);
+      } else {
+        toast.error(resJson.message || "Gagal memperbarui data");
+      }
+    } catch (error) {
+      toast.error("Ups something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
   return (
     <div className='w-full flex flex-wrap gap-4 md:gap-8 px-1 md:px-8'>
       {/* LEFT CONTENT */}
@@ -77,28 +143,29 @@ const Dashboard = () => {
           <p className="text-lg ">Konfirmasi Data Peserta</p>
         </div>
         {/* FORM INPUT */}
-        <form className="mt-6">
+        <form onSubmit={handleSubmit} className="mt-6">
           <div className="flex flex-col">
             <label className="text-sm mb-2">Kode Peserta</label>
-            <input type="number" className="p-2  outline-none focus:border-2 rounded-lg focus:border-blue-500" />
+            <input type="text" value={kodePeserta} disabled className="p-2 cursor-not-allowed outline-none rounded-lg text-gray-500 bg-white" />
           </div>
           <div className="flex flex-col">
             <label className="text-sm mb-2">Nama Peserta</label>
-            <input type="text" className="p-2  outline-none focus:border-2 rounded-lg focus:border-blue-500" />
+            <input value={name} onChange={((e) => setName(e.target.value))} type="text" className="p-2 text-gray-500  outline-none focus:border-2 rounded-lg focus:border-blue-500" />
           </div>
           <div className="flex flex-col">
             <label className="text-sm mb-2">Mata Ujian</label>
-            <input type="text" className="p-2  outline-none focus:border-2 rounded-lg focus:border-blue-500" />
+            <input value={mataUjian} onChange={(e) => setMataUjian(e.target.value)} type="text" className="p-2 text-gray-500  outline-none focus:border-2 rounded-lg focus:border-blue-500" />
           </div>
           <div className="flex flex-col">
             <label className="text-sm mb-2">Jenis Kelamin</label>
-            <select className="p-2  outline-none focus:border-2 rounded-lg focus:border-blue-500">
-              <option value=""></option>
+            <select value={gender} onChange={(e) => setGender(e.target.value)} className="p-2  text-gray-500 outline-none focus:border-2 rounded-lg focus:border-blue-500">
               <option value="laki-laki">Laki-Laki</option>
               <option value="perempuan">Perempuan</option>
             </select>
           </div>
-          <button className="flex items-center justify-center w-full py-2 bg-blue-300 rounded-full text-gray-50 mt-8 hover:bg-blue-400 hover:text-white transition-all duration-150" type="submit">Submit</button>
+          <button className="flex items-center justify-center w-full py-2 bg-blue-300 rounded-full text-gray-50 mt-8 hover:bg-blue-400 hover:text-white transition-all duration-150" type="submit">
+            {loading ? <div className="flex items-center justify-center gap-2"><span>Loading...</span><span className="loader"></span></div> : "Submit"}
+          </button>
         </form>
       </div>
     </div>

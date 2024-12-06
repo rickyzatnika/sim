@@ -7,26 +7,48 @@ const UsersSchema = new mongoose.Schema(
       unique: true,
       required: true,
     },
-    // name: {
-    //   type: String,
-    //   unique: true,
-    //   required: true,
-    // },
-
-    // major: {
-    //   type: String,
-    //   unique: true,
-    // },
     password: {
       type: String,
       required: false,
     },
-    image: {
-      type: String, // URL atau path ke gambar
-    },
     role: {
       type: String,
       default: "student",
+    },
+     name: {
+      type: String,
+      unique: true,
+    },
+    kodePeserta: {
+      type: String,
+      unique: true,
+    },
+    mataUjian: {
+      type: String,
+    },
+    classes: {
+      type: String,
+    },
+    gender: {
+      type: String,
+    },
+    major: {
+      type: String,
+    },
+    tempatLahir: {
+      type: String,
+    },
+    tanggalLahir: {
+      type: String,
+    },
+    agama: {
+      type: String,
+    },
+    alamat: {
+      type: String,
+    },
+    image: {
+      type: String, // URL atau path ke gambar
     },
   },
   {

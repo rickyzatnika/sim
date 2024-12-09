@@ -37,7 +37,7 @@ const MateriBelajar = () => {
                         return (
                             <Link key={i} href="#" className="w-full group rounded-lg shadow-md pb-4">
                                 <div className={`${randomColor()} w-full flex gap-3 items-start p-2`}>
-                                    <Image src="/message.png" width={60} height={60} priority={true} />
+                                    <Image alt="message-icon" src="/message.png" width={60} height={60} priority={true} />
                                     <div className="flex flex-col items-start">
                                         <p className="text-lg text-gray-50 font-bold">{m.title}</p>
                                         <p className="text-sm text-gray-50">Guru : {m.guru}</p>

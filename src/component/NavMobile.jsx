@@ -24,6 +24,7 @@ const NavMobile = ({ setActive, handleButtonMenu }) => {
         )
       }
 
+
       {
         menuLink.map((item, i) => (
           <Link onClick={() => handleButtonMenu(setActive(false))} key={i} href={item.link} className='px-4 flex gap-2 items-center text-blue-500 hover:text-gray-600'>

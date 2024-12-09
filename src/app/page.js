@@ -16,7 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 const LoginPage = () => {
 
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -60,7 +60,6 @@ const LoginPage = () => {
             username: username,
             password: password,
           });
-          router.push('/dashboard')
         }, 3000)
 
         return () => clearTimeout(timeOutId);
@@ -76,8 +75,10 @@ const LoginPage = () => {
   };
 
   useEffect(() => {
-    if(session){
+    if(session || status === "authenticated"){
       router.push("/dashboard")
+    } else {
+      return
     }
   }, [router, session])
 

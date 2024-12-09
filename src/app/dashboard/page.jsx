@@ -16,8 +16,8 @@ const Dashboard = () => {
 
   const { data: session } = useSession();
 
-  const { data: users } = useSWR(
-    session?.user?._id ? `${process.env.NEXT_PUBLIC_API_PRO}/api/register/${session?.user?._id}` : null,
+  const { data: users, mutate } = useSWR(
+    session?.user?._id ? `${process.env.NEXT_PUBLIC_API_PRO}/api/register/${session.user._id}` : null,
     fetcher
   );
 
@@ -27,6 +27,8 @@ const Dashboard = () => {
   const [kodePeserta, setKodePeserta] = useState("");
   const [mataUjian, setMataUjian] = useState("");
   const [gender, setGender] = useState("");
+
+
 
   useEffect(() => {
     if (users) {
@@ -48,10 +50,8 @@ const Dashboard = () => {
 
     setLoading(true);
     try {
-
       const body = { name, kodePeserta, mataUjian, gender };
-
-      const res = await fetch(session?.user?._id ? `${process.env.NEXT_PUBLIC_API_PRO}/api/register/${session?.user?._id}` : null, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_PRO}/api/register/${session.user._id}`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -59,12 +59,13 @@ const Dashboard = () => {
         body: JSON.stringify(body),
       });
 
-      const resJson = await res.json();
-
-      if (res.status === 200) {
-        toast.success(`Peserta dengan kode ${resJson.kodePeserta} Valid!`);
+      if (res.ok) {
+        const resJson = await res.json();
+        toast.success(`${resJson.kodePeserta} Valid!`);
+        mutate();
       } else {
-        toast.error(resJson.message || "Gagal memperbarui data");
+        const errorData = await res.json();
+        toast.error(errorData.message || "Gagal memperbarui data");
       }
     } catch (error) {
       toast.error("Ups something went wrong");

@@ -36,6 +36,9 @@ export const POST = async (req = NextRequest) => {
 
     return new NextResponse(JSON.stringify(newUser), { status: 200 });
   } catch (error) {
-    return new NextResponse({ status: 500, message: "Internal Server Error" });
+    return new NextResponse(
+        JSON.stringify({ message: "Something went wrong !!" }),
+        { status: 500 }
+      );
   }
 };

@@ -23,8 +23,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <ToastContainer theme="dark" />
         <AuthProvider>
+          <ToastContainer theme="dark" />
           {children}
         </AuthProvider>
       </body>

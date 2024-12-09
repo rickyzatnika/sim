@@ -1,9 +1,9 @@
 import Users from "@/models/Users";
 import connect from "@/utils/connect";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 
-export const GET = async (req) => {
+export const GET = async (req = NextRequest) => {
   await connect();
 
   try {

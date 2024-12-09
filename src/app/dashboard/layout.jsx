@@ -33,14 +33,9 @@ export default function DashboardLayout({ children }) {
     setActive(prev => !prev);
   }
 
-  useEffect(() => {
-    if (!session || status === "unauthenticated") {
-      router.push("/")
-      return
-    }
-
-  }, [users, session, status, router]);
-
+  if (!session || status === "unauthenticated") {
+    router.push(`${process.env.NEXT_PUBLIC_API_PRO}/`)
+  }
 
 
   return (

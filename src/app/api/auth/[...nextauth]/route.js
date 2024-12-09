@@ -56,9 +56,9 @@ const handler = NextAuth({
   },
 
   pages: {
-    signIn: "/",
-    signOut: "/",
-    error: "/",
+    signIn: process.env.NEXT_PUBLIC_API_PRO,
+    signOut: process.env.NEXT_PUBLIC_API_PRO,
+    error: process.env.NEXT_PUBLIC_API_PRO,
   },
 });
 

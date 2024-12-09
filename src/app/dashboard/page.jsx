@@ -17,7 +17,7 @@ const Dashboard = () => {
   const { data: session } = useSession();
 
   const { data: users } = useSWR(
-    session?.user?._id ? `${process.env.NEXT_PUBLIC_API_PRO}/api/user/${session.user._id}` : null,
+    session?.user?._id ? `${process.env.NEXT_PUBLIC_API_PRO}/api/register/${session?.user?._id}` : null,
     fetcher
   );
 
@@ -51,7 +51,7 @@ const Dashboard = () => {
 
       const body = { name, kodePeserta, mataUjian, gender };
 
-      const res = await fetch(session?.user?._id ? `${process.env.NEXT_PUBLIC_API_PRO}/api/student/${session.user._id}` : null, {
+      const res = await fetch(session?.user?._id ? `${process.env.NEXT_PUBLIC_API_PRO}/api/register/${session?.user?._id}` : null, {
         headers: {
           "Content-Type": "application/json",
         },

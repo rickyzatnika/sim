@@ -2,19 +2,26 @@ import Info from "@/models/Information";
 import connect from "@/utils/connect";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req, { params: { id } }) {
-  await connect();
+export async function GET(req, { params }) {
+  const { id } = params; // Pastikan `id` ada
+  if (!id) {
+    return new NextResponse(JSON.stringify({ message: "ID is required" }), {
+      status: 400,
+    });
+  }
 
   try {
     const info = await Info.findById(id);
-
+    if (!info) {
+      return new NextResponse(JSON.stringify({ message: "Info not found" }), {
+        status: 404,
+      });
+    }
     return new NextResponse(JSON.stringify(info), { status: 200 });
   } catch (error) {
+    console.error("Error fetching data:", error);
     return new NextResponse(
-      JSON.stringify({
-        message: "Internal server error",
-        error: error.message,
-      }),
+      JSON.stringify({ message: "Internal server error" }),
       { status: 500 }
     );
   }

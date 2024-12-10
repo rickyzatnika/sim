@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-const AddInformation = () => {
+const Information = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -104,4 +104,4 @@ const AddInformation = () => {
   );
 };
 
-export default AddInformation;
+export default Information;

@@ -25,7 +25,7 @@ const Dashboard = () => {
   );
 
   const { data: infos } = useSWR(
-    `${process.env.NEXT_PUBLIC_API_PRO}/api/information`,
+    `${process.env.NEXT_PUBLIC_API_PRO}/api/info`,
     fetcherInfo
   );
 

@@ -27,7 +27,7 @@ const Information = () => {
 
     try {
       setLoading(true);
-      const res = await fetch("/api/information", {
+      const res = await fetch("/api/info", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -1,6 +1,5 @@
 import Info from "@/models/Information";
 import connect from "@/utils/connect";
-import { hash, genSalt } from "bcryptjs";
 import { NextResponse, NextRequest } from "next/server";
 
 export const GET = async (req = NextRequest) => {

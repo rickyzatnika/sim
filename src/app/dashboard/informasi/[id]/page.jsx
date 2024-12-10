@@ -9,7 +9,7 @@ const getInfoById = async (id) => {
 };
 
 const DetailInfo = async ({ params }) => {
-  const info = await getInfoById(params?._id);
+  const info = await getInfoById(params._id);
 
   return (
     <>

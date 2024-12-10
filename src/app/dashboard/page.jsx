@@ -94,7 +94,7 @@ const Dashboard = () => {
         {/* CONTENT DATA FETCH */}
         {infos?.map((info, i) => (
           <Link
-            href={`/dashboard/informasi/${info?.id}`}
+            href={`/dashboard/informasi/${info?._id}`}
             key={i}
             className="flex items-start gap-2 px-4 py-3 mt-6"
           >

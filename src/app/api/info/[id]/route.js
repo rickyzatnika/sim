@@ -2,7 +2,7 @@ import Info from "@/models/Information";
 import connect from "@/utils/connect";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req = NextRequest, { params: { id } }) {
+export async function GET(req, { params: { id } }) {
   await connect();
 
   try {
@@ -11,13 +11,16 @@ export async function GET(req = NextRequest, { params: { id } }) {
     return new NextResponse(JSON.stringify(info), { status: 200 });
   } catch (error) {
     return new NextResponse(
-      JSON.stringify({ message: "Internal server error" }),
+      JSON.stringify({
+        message: "Internal server error",
+        error: error.message,
+      }),
       { status: 500 }
     );
   }
 }
 
-export async function PUT(req = NextRequest, { params: { id } }) {
+export async function PUT(req, { params: { id } }) {
   try {
     await connect();
     const body = await req.json();
@@ -31,10 +34,11 @@ export async function PUT(req = NextRequest, { params: { id } }) {
     return new NextResponse(JSON.stringify(updateInfo), { status: 201 });
   } catch (error) {
     return new NextResponse(
-      JSON.stringify({ message: "Internal Server Error!" }),
-      {
-        status: 500,
-      }
+      JSON.stringify({
+        message: "Internal server error",
+        error: error.message,
+      }),
+      { status: 500 }
     );
   }
 }

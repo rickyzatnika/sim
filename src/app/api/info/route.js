@@ -16,9 +16,11 @@ export const GET = async (req = NextRequest) => {
 
     return new NextResponse(JSON.stringify(info), { status: 200 });
   } catch (error) {
-    console.log(error);
     return new NextResponse(
-      JSON.stringify({ message: "internal server error" }),
+      JSON.stringify({
+        message: "Internal server error",
+        error: error.message,
+      }),
       { status: 500 }
     );
   }
@@ -41,6 +43,12 @@ export const POST = async (req = NextRequest) => {
       { status: 200 }
     );
   } catch (error) {
-    return new NextResponse(error.message, { status: 500 });
+    return new NextResponse(
+      JSON.stringify({
+        message: "Internal server error",
+        error: error.message,
+      }),
+      { status: 500 }
+    );
   }
 };

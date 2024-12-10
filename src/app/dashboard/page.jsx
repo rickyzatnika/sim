@@ -9,6 +9,7 @@ import useSWR from "swr";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Link from "next/link";
+import moment from "moment";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 const fetcherInfo = (...args) => fetch(...args).then((res) => res.json());
@@ -106,7 +107,7 @@ const Dashboard = () => {
                 <p className="text-blue-800/80 font-semibold">{info?.title}</p>
                 <div className="text-sm flex gap-1 items-center">
                   <MdOutlineDateRange size={14} />
-                  <span>{info?.createdAt}</span>
+                  <span> {moment(info?.createdAt).format("LL")}</span>
                 </div>
               </div>
               <p className="mt-2 text-xs px-3 w-fit rounded-full bg-red-200/50 font-semibold">

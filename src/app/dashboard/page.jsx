@@ -18,7 +18,7 @@ const Dashboard = () => {
 
   const { data: users, mutate } = useSWR(
     session?.user?._id
-      ? `${process.env.NEXT_PUBLIC_API_PRO}/api/register/${session.user._id}`
+      ? `${process.env.NEXT_PUBLIC_API_PRO}/api/register/${session?.user?._id}`
       : null,
     fetcher
   );

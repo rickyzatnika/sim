@@ -8,7 +8,6 @@ import { useSession } from "next-auth/react";
 import useSWR from "swr";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import moment from "moment";
 import Link from "next/link";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -107,7 +106,7 @@ const Dashboard = () => {
                 <p className="text-blue-800/80 font-semibold">{info?.title}</p>
                 <div className="text-sm flex gap-1 items-center">
                   <MdOutlineDateRange size={14} />
-                  <span>{moment().format("LL").toString(info?.createdAt)}</span>
+                  <span>{info?.createdAt}</span>
                 </div>
               </div>
               <p className="mt-2 text-xs px-3 w-fit rounded-full bg-red-200/50 font-semibold">

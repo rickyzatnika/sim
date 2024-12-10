@@ -3,9 +3,7 @@ import connect from "@/utils/connect";
 import { hash, genSalt } from "bcryptjs";
 import { NextResponse, NextRequest } from "next/server";
 
-
-
-export const GET = async (req = NextRequest) => {
+export const GET = async () => {
   await connect();
   try {
     const user = await Users.find({});
@@ -24,12 +22,24 @@ export const GET = async (req = NextRequest) => {
   }
 };
 
-
-
 export const POST = async (req = NextRequest) => {
   await connect();
 
-  const { username, name, classes,  major, kodePeserta, mataUjian, gender, tempatLahir, tanggalLahir, agama, alamat, password, role } = await req.json();
+  const {
+    username,
+    name,
+    classes,
+    major,
+    kodePeserta,
+    mataUjian,
+    gender,
+    tempatLahir,
+    tanggalLahir,
+    agama,
+    alamat,
+    password,
+    role,
+  } = await req.json();
   if (!username || !name || !major || !kodePeserta || !password) {
     return new NextResponse(JSON.stringify({ message: "Field Required!" }), {
       status: 400,
@@ -64,7 +74,10 @@ export const POST = async (req = NextRequest) => {
       role,
     });
     await newUser.save();
-    return new NextResponse(JSON.stringify({ message: "Registered Successfully"}), { status: 201 });
+    return new NextResponse(
+      JSON.stringify({ message: "Registered Successfully" }),
+      { status: 201 }
+    );
   } catch (error) {
     return new NextResponse(error.message, { status: 500 });
   }

@@ -1,8 +1,8 @@
 import Info from "@/models/Information";
 import connect from "@/utils/connect";
-import { NextResponse, NextRequest } from "next/server";
+import { NextRequest } from "next/server";
 
-export const GET = async (req = NextRequest) => {
+export const GET = async () => {
   await connect();
   try {
     const info = await Info.find({});

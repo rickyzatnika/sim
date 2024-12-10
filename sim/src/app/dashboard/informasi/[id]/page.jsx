@@ -1,18 +1,18 @@
-import Image from "next/image";
-import React from "react";
+"use server";
+
 import axios from "axios";
 import moment from "moment";
 
 const getInfoById = async (id) => {
   const res = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_PRO}/api/information/${id}`
+    `${process.env.NEXT_PUBLIC_API_PRO}/api/info/${id}`
   );
   const data = await res.data;
   return data;
 };
 
 const DetailInfo = async ({ params }) => {
-  const info = await getInfoById(params?.id);
+  const info = await getInfoById(params?._id);
 
   return (
     <>
@@ -26,11 +26,8 @@ const DetailInfo = async ({ params }) => {
             <div className="relative w-full h-full my-2 sm:my-6">
               <div className="flex flex-col md:flex-row items-start gap-2 md:gap-0 md:items-center justify-between w-full px-0 md:px-2 pt-2">
                 <div className="flex items-center gap-1 ">
-                  <span className="text-xs text-gray-500 dark:text-gray-200">
-                    Di posting :
-                  </span>
                   <span className="text-xs px-2 py-0.5 rounded-full text-gray-500 bg-slate-200 shadow dark:bg-slate-700 dark:text-gray-200 w-fit">
-                    {moment(info?.createdAt).format("ll")}
+                    {info?.createdAt}
                   </span>
                 </div>
                 <div className="flex items-center gap-1">

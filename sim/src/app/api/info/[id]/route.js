@@ -2,7 +2,7 @@ import Info from "@/models/Information";
 import connect from "@/utils/connect";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req = NextRequest, { params: { id } }) {
+export async function GET({ params: { id } }) {
   await connect();
 
   try {
@@ -17,7 +17,7 @@ export async function GET(req = NextRequest, { params: { id } }) {
   }
 }
 
-export async function PUT(req, { params: { id } }) {
+export async function PUT(req = NextRequest, { params: { id } }) {
   try {
     await connect();
     const body = await req.json();

@@ -2,7 +2,7 @@ import Info from "@/models/Information";
 import connect from "@/utils/connect";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET({ params: { id } }) {
+export async function GET(req, { params: { id } }) {
   await connect();
 
   try {

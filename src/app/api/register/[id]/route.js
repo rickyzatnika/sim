@@ -2,7 +2,7 @@ import Users from "@/models/Users";
 import connect from "@/utils/connect";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET({ params: { id } }) {
+export async function GET(req = NextRequest, { params: { id } }) {
   await connect();
 
   try {

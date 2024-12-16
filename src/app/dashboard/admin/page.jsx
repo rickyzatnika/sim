@@ -8,22 +8,18 @@ const AdminPage = () => {
     <div className="flex gap-3 items-center">
       <Link
         className="px-3 py-1 border rounded-md hover:bg-indigo-400 hover:text-white"
-        href="/dashboard/admin/add-user"
+        href="/dashboard/admin/informasi"
       >
-        Tambah User
+        INFORMASI
       </Link>
+
       <Link
         className="px-3 py-1 border rounded-md hover:bg-indigo-400 hover:text-white"
-        href="/dashboard/admin/add-info"
+        href="/dashboard/admin/user"
       >
-        Buat Informasi
+        USER
       </Link>
-      <Link
-        className="px-3 py-1 border rounded-md hover:bg-indigo-400 hover:text-white"
-        href="/dashboard/admin/daftar-murid"
-      >
-        Daftar Murid
-      </Link>
+
     </div>
   );
 };

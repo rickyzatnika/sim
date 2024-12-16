@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-const Information = () => {
+const AddInformation = ({ setShowModal, mutate }) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -43,8 +43,10 @@ const Information = () => {
         const timeoutId = setTimeout(() => {
           setLoading(false);
           toast.success(resJ.message);
+          mutate();
+          setShowModal(false);
         }, 3000);
-        router.push("/dashboard/admin");
+
         return () => clearTimeout(timeoutId);
       } else {
         toast.error("ups coba ulangi");
@@ -85,23 +87,26 @@ const Information = () => {
             onChange={(e) => setDesc(e.target.value)}
             className="mb-3 placeholder:text-sm placeholder:text-gray-500/80 px-4 py-3 rounded  w-full border-gray-300 border-2 bg-transparent text-gray-800  outline-none  focus:outline-none focus:ring-0 focus:border-2   focus:border-green-400"
           />
-          <button
-            className="px-4 py-3 mt-6 w-1/3 rounded uppercase transition-all duration-150 ease-linear bg-gradient-to-tr from-green-500 to-lime-400 text-slate-100 hover:bg-green-500 hover:text-white"
-            type="submit"
-          >
-            {loading ? (
-              <div className="flex gap-2 items-center justify-center">
-                <span className=" text-white">Loading... </span>
-                <span className="loader"></span>
-              </div>
-            ) : (
-              "Submit"
-            )}
-          </button>
+          <div className="flex items-center justify-between">
+            <button
+              className="px-4 py-3 mt-6 w-full rounded uppercase transition-all duration-150 ease-linear bg-gradient-to-tr from-green-500 to-lime-400 text-slate-100 hover:bg-green-500 hover:text-white"
+              type="submit"
+            >
+              {loading ? (
+                <div className="flex gap-2 items-center justify-center">
+                  <span className=" text-white">Loading... </span>
+                  <span className="loader"></span>
+                </div>
+              ) : (
+                "Submit"
+              )}
+            </button>
+            <button onClick={() => setShowModal(false)} className="px-4 py-3 mt-6 w-full rounded  uppercase transition-all duration-150 ease-linear bg-orange-400  text-white">Cancel</button>
+          </div>
         </form>
       </div>
     </>
   );
 };
 
-export default Information;
+export default AddInformation;

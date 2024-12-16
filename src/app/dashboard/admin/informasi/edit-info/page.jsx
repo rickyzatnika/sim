@@ -12,39 +12,39 @@ const EditInformation = () => {
   const [subDesc, setSubdesc] = useState("");
   const [desc, setDesc] = useState("");
 
-  // const formInformation = async (e) => {
-  //     e.preventDefault();
+  const formInformation = async (e) => {
+    e.preventDefault();
 
-  //     try {
-  //         setLoading(true);
-  //         const res = await fetch("/api/info/", {
-  //             method: "PUT",
-  //             headers: { "Content-Type": "application/json" },
-  //             body: JSON.stringify({
-  //                 title,
-  //                 subDesc,
-  //                 desc,
-  //             }),
-  //         });
+    try {
+      setLoading(true);
+      const res = await fetch("/api/info/", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title,
+          subDesc,
+          desc,
+        }),
+      });
 
-  //         const resJ = await res.json();
+      const resJ = await res.json();
 
-  //         if (res.status === 200) {
-  //             const timeoutId = setTimeout(() => {
-  //                 setLoading(false);
-  //                 toast.success(resJ.message);
-  //                 mutate();
-  //                 setShowModal(false);
-  //             }, 3000);
+      if (res.status === 200) {
+        const timeoutId = setTimeout(() => {
+          setLoading(false);
+          toast.success(resJ.message);
+          mutate();
+          setShowModal(false);
+        }, 3000);
 
-  //             return () => clearTimeout(timeoutId);
-  //         } else {
-  //             toast.error("ups coba ulangi");
-  //         }
-  //     } catch (error) {
-  //         toast.error(resJ.message);
-  //     }
-  // };
+        return () => clearTimeout(timeoutId);
+      } else {
+        toast.error("ups coba ulangi");
+      }
+    } catch (error) {
+      toast.error(resJ.message);
+    }
+  };
 
   return (
     <>

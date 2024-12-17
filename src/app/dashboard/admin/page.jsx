@@ -19,6 +19,12 @@ const AdminPage = () => {
       >
         USER
       </Link>
+      <Link
+        className="px-3 py-1 border rounded-md hover:bg-indigo-400 hover:text-white"
+        href="/dashboard/admin/materi-belajar"
+      >
+        MATERI BELAJAR
+      </Link>
 
     </div>
   );

@@ -43,9 +43,8 @@ export default function DashboardLayout({ children }) {
       <div className="w-full flex ">
         {/* SIDEBAR MENU */}
         <div
-          className={` flex-none bg-gray-50 h-screen min-h-full origin-center transition-all duration-300 ${
-            active ? "w-0" : "w-48"
-          }`}
+          className={` flex-none bg-gray-50 h-screen min-h-full origin-center transition-all duration-300 ${active ? "w-0" : "w-48"
+            }`}
         >
           <div className="flex border-t border-b-2 py-4 mb-6">
             <BiSolidUserRectangle size={60} />
@@ -114,7 +113,7 @@ export default function DashboardLayout({ children }) {
               <GiHamburgerMenu size={24} />
             </button>
             <div className="flex gap-2">
-              <p className="text-sm">Murid Baik</p>
+              <p className="text-sm">{users?.name}</p>
 
               <FaUserCircle size={20} />
             </div>

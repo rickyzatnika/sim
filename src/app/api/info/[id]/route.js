@@ -49,3 +49,17 @@ export async function PUT(req, { params: { id } }) {
     );
   }
 }
+
+
+export async function DELETE(req = NextRequest, { params: { id } }) {
+  await connect();
+
+  try {
+    await Info.findByIdAndDelete(id);
+    return new NextResponse(JSON.stringify("deleted Successfully"), {
+      status: 200,
+    });
+  } catch (error) {
+    return new NextResponse(JSON.stringify(error.message), { status: 500 });
+  }
+}
